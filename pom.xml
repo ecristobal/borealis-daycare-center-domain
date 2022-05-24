@@ -13,8 +13,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Data Domain parent</name>
+    <name>Data Domain Parent</name>
     <description>Parent artifact for all data domains defined into Borealis platform</description>
+
+    <modules>
+        <module>entities</module>
+        <module>repositories</module>
+    </modules>
 
     <properties>
         <!-- Maven set-up -->
