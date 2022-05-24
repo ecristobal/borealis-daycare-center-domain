@@ -40,3 +40,5 @@ jobs:
           check-latest: true
       - name: Deploy to GitHub Packages
         run: ./mvnw -B deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
