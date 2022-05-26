@@ -21,11 +21,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Migrate database
-          run: |
-            ./mvnw -B flyway:migrate \
-            -Ddatabase.url=${{database.url}} \
-            -Ddatabase.user=${{database.user}} \
-            -Ddatabase.password=${{database.password}} \
+        run: |
+          ./mvnw -B flyway:migrate \
+          -Ddatabase.url=${{database.url}} \
+          -Ddatabase.user=${{database.user}} \
+          -Ddatabase.password=${{database.password}} \
   build-application:
     runs-on: ubuntu-latest
     steps:
