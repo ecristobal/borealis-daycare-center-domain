@@ -12,7 +12,7 @@
     <artifactId>entities</artifactId>
     <packaging>pom</packaging>
 
-    <name>Data Domain Entities</name>
+    <name>Borealis Data Domain Entities</name>
     <description>Parent project for Borealis data domain entities</description>
 
 </project>

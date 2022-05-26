@@ -12,7 +12,7 @@
     <artifactId>repositories</artifactId>
     <packaging>pom</packaging>
 
-    <name>Data Domain Repositories</name>
+    <name>Borealis Data Domain Repositories</name>
     <description>Parent project for Borealis data domain repositories</description>
 
 </project>
