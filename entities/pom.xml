@@ -3,6 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <database.driver>org.postgresql.Driver</database.driver>
+    </properties>
     <parent>
         <artifactId>domain-parent</artifactId>
         <groupId>es.borealis.data</groupId>
@@ -10,9 +13,76 @@
     </parent>
 
     <artifactId>entities</artifactId>
-    <packaging>pom</packaging>
 
     <name>Borealis Data Domain Entities</name>
     <description>Parent project for Borealis data domain entities</description>
+
+    <dependencies>
+        <!-- R2DBC dependencies -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>r2dbc-postgresql</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <skip>true</skip>
+                            <jdbc>
+                                <driver>${database.driver}</driver>
+                                <url>${database.url}</url>
+                                <user>${database.user}</user>
+                                <password>${database.password}</password>
+                            </jdbc>
+                            <generator>
+                                <database>
+                                    <name>org.jooq.meta.postgres.PostgresDatabase</name>
+                                    <includes>.*</includes>
+                                </database>
+                                <target>
+                                    <packageName>es.borealis.data.domain.entities</packageName>
+                                    <directory>target/generated-sources</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>${database.driver}</driver>
+                    <url>${database.url}</url>
+                    <user>${database.user}</user>
+                    <password>${database.password}</password>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

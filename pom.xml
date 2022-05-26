@@ -46,7 +46,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <repackage.classifier/>
-        <!-- Dependencies' versions -->
+        <!-- Dependency versions -->
         <testcontainers.version>1.17.2</testcontainers.version>
         <moneta.version>1.4.2</moneta.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
@@ -194,37 +194,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <!-- Dependency management -->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>${dependency-check-maven.version}</version>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>json</format>
-                    </formats>
-                    <failBuildOnCVSS>8</failBuildOnCVSS>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <rules>
-                        <dependencyConvergence/>
-                        <banDuplicatePomDependencyVersions/>
-                    </rules>
-                    <fail>true</fail>
-                </configuration>
             </plugin>
             <!-- Utilities -->
             <plugin>
