@@ -53,7 +53,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
       - name: Checkstyle analysis
         run: |
-          ./mvnw -B checkstyle:checkstyle-aggregate
+          ./mvnw -B checkstyle:checkstyle
       - name: SonarCloud analysis
         run: |
           ./mvnw -B sonar:sonar \
