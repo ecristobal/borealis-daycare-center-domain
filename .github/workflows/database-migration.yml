@@ -21,13 +21,13 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
       - name: Migrate Pre-Production database
         run: |
-          ./mvnw -B flyway:migrate \
+          ./mvnw -B -f entities/pom.xml flyway:migrate \
 #          -Ddatabase.url=${{preprod.database.url}} \
 #          -Ddatabase.user=${{preprod.database.user}} \
 #          -Ddatabase.password=${{preprod.database.password}}
       - name: Migrate Production database
         run: |
-          ./mvnw -B flyway:migrate \
+          ./mvnw -B -f entities/pom.xml flyway:migrate \
 #          -Ddatabase.url=${{prod.database.url}} \
 #          -Ddatabase.user=${{prod.database.user}} \
 #          -Ddatabase.password=${{prod.database.password}}

@@ -33,7 +33,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
       - name: Migrate ephemeral database
         run: |
-          ./mvnw -B flyway:migrate \
+          ./mvnw -B -f entities/pom.xml flyway:migrate \
           -Ddatabase.url=jdbc:postgresql://postgres:5432/postgres \
           -Ddatabase.user=postgres \
           -Ddatabase.password=postgres
