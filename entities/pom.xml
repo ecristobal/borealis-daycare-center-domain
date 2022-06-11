@@ -19,6 +19,11 @@
     </properties>
 
     <dependencies>
+        <!-- JOOQ dependencies -->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+        </dependency>
         <!-- R2DBC dependencies -->
         <dependency>
             <groupId>org.postgresql</groupId>

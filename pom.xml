@@ -48,6 +48,7 @@
         <repackage.classifier/>
         <!-- Dependency versions -->
         <testcontainers.version>1.17.2</testcontainers.version>
+        <jooq-parent.version>3.16.6</jooq-parent.version>
         <moneta.version>1.4.2</moneta.version>
         <mapstruct.version>1.5.1.Final</mapstruct.version>
         <!-- Plugin versions -->
@@ -68,7 +69,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- JSR-354 (Money and Currency API) Reference Implementation -->
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-parent</artifactId>
+                <version>${jooq-parent.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.javamoney</groupId>
                 <artifactId>moneta</artifactId>
@@ -76,7 +83,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- MapStruct -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
