@@ -59,7 +59,6 @@
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
         <dependency-check-maven.version>7.1.0</dependency-check-maven.version>
-        <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -156,7 +155,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -165,7 +163,6 @@
                     </execution>
                 </executions>
                 <configuration>
-
                     <rules>
                         <banDuplicatePomDependencyVersions/>
                         <dependencyConvergence/>
