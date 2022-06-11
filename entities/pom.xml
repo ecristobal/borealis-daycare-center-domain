@@ -60,6 +60,7 @@
                                 <database>
                                     <name>org.jooq.meta.postgres.PostgresDatabase</name>
                                     <includes>.*</includes>
+                                    <excludes>flyway_schema_history</excludes>
                                     <inputSchema>${borealis.schema}</inputSchema>
                                 </database>
                                 <target>
