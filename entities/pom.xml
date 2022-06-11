@@ -46,8 +46,8 @@
                         <configuration>
                             <skip>true</skip>
                             <jdbc>
-                                <driver>${database.driver}</driver>
-                                <url>${database.url}</url>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>jdbc:postgresql://${database.url}</url>
                                 <user>${database.user}</user>
                                 <password>${database.password}</password>
                             </jdbc>
@@ -76,10 +76,14 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <driver>${database.driver}</driver>
-                    <url>${database.url}</url>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://${database.url}</url>
                     <user>${database.user}</user>
                     <password>${database.password}</password>
+                    <schemas>
+                        <schema>borealis</schema>
+                    </schemas>
+                    <createSchemas>true</createSchemas>
                 </configuration>
             </plugin>
         </plugins>
