@@ -3,9 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <properties>
-        <database.driver>org.postgresql.Driver</database.driver>
-    </properties>
     <parent>
         <artifactId>domain-parent</artifactId>
         <groupId>es.borealis.data</groupId>
@@ -16,6 +13,10 @@
 
     <name>Borealis Data Domain Entities</name>
     <description>Parent project for Borealis data domain entities</description>
+
+    <properties>
+        <borealis.schema>borealis</borealis.schema>
+    </properties>
 
     <dependencies>
         <!-- R2DBC dependencies -->
@@ -55,6 +56,7 @@
                                 <database>
                                     <name>org.jooq.meta.postgres.PostgresDatabase</name>
                                     <includes>.*</includes>
+                                    <inputSchema>${borealis.schema}</inputSchema>
                                 </database>
                                 <target>
                                     <packageName>es.borealis.data.domain.entities</packageName>
@@ -81,7 +83,7 @@
                     <user>${database.user}</user>
                     <password>${database.password}</password>
                     <schemas>
-                        <schema>borealis</schema>
+                        <schema>${borealis.schema}</schema>
                     </schemas>
                     <createSchemas>true</createSchemas>
                 </configuration>
