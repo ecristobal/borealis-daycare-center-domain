@@ -45,7 +45,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <skip>true</skip>
                             <jdbc>
                                 <driver>org.postgresql.Driver</driver>
                                 <url>jdbc:postgresql://${database.url}</url>
