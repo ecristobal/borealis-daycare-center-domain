@@ -28,11 +28,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Cache Maven repository
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          cache: 'maven'
       - name: Migrate ephemeral database
         run: |
           ./mvnw -B -f entities/pom.xml flyway:migrate \
