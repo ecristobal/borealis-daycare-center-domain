@@ -61,6 +61,7 @@ jobs:
           -Dsonar.organization=borealis \
           -Dsonar.projectKey=${{github.event.repository.name}} \
           -Dsonar.branch=${{github.ref_name}} \
+          -Dsonar.plsql.file.suffixes=db \
           -Dsonar.plsql.defaultSchema=borealis \
           -Dsonar.plsql.jdbc.url=localhost:5432/postgres \
           -Dsonar.plsql.jdbc.user=postgres \
