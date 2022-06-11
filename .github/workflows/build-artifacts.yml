@@ -36,13 +36,13 @@ jobs:
       - name: Migrate ephemeral database
         run: |
           ./mvnw -B -f entities/pom.xml flyway:migrate \
-          -Ddatabase.url=jdbc:postgresql://localhost:5432/postgres \
+          -Ddatabase.url=localhost:5432/postgres \
           -Ddatabase.user=postgres \
           -Ddatabase.password=postgres
       - name: Build with Maven
         run: |
           ./mvnw -B clean install \
-          -Ddatabase.url=jdbc:postgresql://postgres:5432/postgres \
+          -Ddatabase.url=postgres:5432/postgres \
           -Ddatabase.user=postgres \
           -Ddatabase.password=postgres
       - name: Cache SonarCloud packages
@@ -60,7 +60,13 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.organization=borealis \
           -Dsonar.projectKey=${{github.event.repository.name}} \
-          -Dsonar.branch=${{github.ref_name}}
+          -Dsonar.branch=${{github.ref_name}} \
+          -Dsonar.plsql.defaultSchema=borealis \
+          -Dsonar.plsql.jdbc.url=localhost:5432/postgres \
+          -Dsonar.plsql.jdbc.user=postgres \
+          -Dsonar.plsql.jdbc.password=postgres \
+          -Dsonar.plsql.jdbc.driver.path=https://jdbc.postgresql.org/download/postgresql-42.4.0.jar \
+          -Dsonar.plsql.jdbc.driver.class=org.postgresql.Driver
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           SONAR_TOKEN: ${{secrets.SONARCLOUD_LOGIN}}
