@@ -64,22 +64,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           SONAR_TOKEN: ${{secrets.SONARCLOUD_LOGIN}}
-      - name: SonarCloud analysis for SQL code
-        uses: sonarsource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: entities
-          args: >
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.organization=borealis \
-            -Dsonar.projectKey=${{github.event.repository.name}} \
-            -Dsonar.branch=${{github.ref_name}} \
-            -Dsonar.plsql.file.suffixes=db \
-            -Dsonar.plsql.defaultSchema=borealis \
-            -Dsonar.plsql.jdbc.url=localhost:5432/postgres \
-            -Dsonar.plsql.jdbc.user=postgres \
-            -Dsonar.plsql.jdbc.password=postgres \
-            -Dsonar.plsql.jdbc.driver.path=https://jdbc.postgresql.org/download/postgresql-42.4.0.jar \
-            -Dsonar.plsql.jdbc.driver.class=org.postgresql.Driver
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          SONAR_TOKEN: ${{secrets.SONARCLOUD_LOGIN}}
