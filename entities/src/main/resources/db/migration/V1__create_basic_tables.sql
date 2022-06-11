@@ -1,10 +1,12 @@
+-- Table to store contact details
+
 create table contacts
 (
-    contact_id varchar(9) not null
-        constraint "contacts_pk"
+    contact_id varchar(9)  not null
+        constraint contacts_pk
             primary key,
-    name       varchar(50),
-    surname    varchar(50),
+    name       varchar(50) not null,
+    surname    varchar(50) not null,
     email      varchar(100),
     phone      varchar(18)
 );
@@ -24,15 +26,17 @@ comment on column contacts.phone is 'Contact phone number';
 create unique index contacts_contact_id_uindex
     on contacts (contact_id);
 
+-- Table to store companies (day care centers' owners)
+
 create table companies
 (
     company_id      varchar(9) not null
-        constraint "companies_pk"
+        constraint companies_pk
             primary key
-        constraint "companies_contacts_fk"
+        constraint companies_contacts_fk
             references contacts
             on update restrict on delete restrict,
-    company_contact varchar(8)
+    company_contact varchar(8) not null
 );
 
 comment on table companies is 'Table used to store company (i.e. owners of centers) details';
@@ -41,8 +45,10 @@ comment on column companies.company_id is 'Company identifier (in Spain it shoul
 
 comment on column companies.company_contact is 'Company contact';
 
-create unique index "companies_id_uindex"
+create unique index companies_id_uindex
     on companies (company_id);
+
+-- Table to store day care centers
 
 create table centers
 (
