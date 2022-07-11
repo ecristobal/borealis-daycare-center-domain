@@ -1,13 +1,12 @@
 name: Deploy Data Domain artifacts & Clean repository
 
 on:
-  release:
-    types: [ published ]
+  workflow_call:
 
 jobs:
   deploy-artifacts:
+    name: Deploy Maven artifacts to GitHub Packages
     runs-on: ubuntu-latest
-    needs: build-application
     permissions:
       contents: read
       packages: write
@@ -19,11 +18,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
+
       - name: Deploy to GitHub Packages
         run: ./mvnw -B deploy
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
   clean-repository:
+    name: Remove old versions from GitHub Packages
     runs-on: ubuntu-latest
     needs: deploy-application
     steps:
@@ -32,11 +34,13 @@ jobs:
         with:
           package-name: 'es.borealis.data.domain-parent'
           min-versions-to-keep: 2
+
       - name: Delete older versions of Borealis Data Entities
         uses: actions/delete-package-versions@v3
         with:
           package-name: 'es.borealis.data.entities'
           min-versions-to-keep: 2
+
       - name: Delete older versions of Borealis Data Repositories
         uses: actions/delete-package-versions@v3
         with:

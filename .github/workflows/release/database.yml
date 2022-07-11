@@ -1,0 +1,38 @@
+name: Database migration
+
+on:
+  workflow_call:
+    inputs:
+      url:
+        required: true
+        type: string
+      user:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+    secrets:
+      password:
+        required: true
+        description: Database password
+
+jobs:
+  # TODO Add job based on Terraform to create database infrastructure
+  migrate-database:
+    name: Migrate ${{ inputs.environment }} database
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Migrate database
+        run: |
+          ./mvnw -B -f entities/pom.xml flyway:migrate \
+          -Ddatabase.url=${{ inpupt.url }} \
+          -Ddatabase.user=${{ input.user }} \
+          -Ddatabase.password=${{ secrets.password }}
