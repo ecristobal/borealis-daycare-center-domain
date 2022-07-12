@@ -2,7 +2,7 @@ name: Deploy Data Domain artifacts & Clean repository
 
 on:
   workflow_run:
-    workflows: [ build-application ]
+    workflows: [ build-artifacts ]
     types: [ completed ]
     branches: [main, releases/**]
 
