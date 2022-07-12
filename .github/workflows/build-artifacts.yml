@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-application:
+    name: Build daycare center domain application
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -60,8 +61,8 @@ jobs:
         run: |
           ./mvnw -B sonar:sonar -pl !entities \
           -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.organization=borealis \
-          -Dsonar.projectKey=${{github.event.repository.name}} \
+          -Dsonar.organization=ecristobal \
+          -Dsonar.projectKey=ecristobal_${{github.event.repository.name}} \
           -Dsonar.branch=${{github.ref_name}}
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
