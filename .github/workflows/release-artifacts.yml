@@ -1,13 +1,10 @@
 name: Deploy Data Domain artifacts & Clean repository
 
 on:
-  push:
-    branches: [ main ]
-  release:
-    types: [ published ]
   workflow_run:
     workflows: [ build-application ]
     types: [ completed ]
+    branches: [main, releases/**]
 
 jobs:
   deploy-artifacts:
