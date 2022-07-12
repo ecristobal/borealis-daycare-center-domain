@@ -53,7 +53,7 @@
         <mapstruct.version>1.5.1.Final</mapstruct.version>
         <!-- Plugin versions -->
         <pitest-maven.version>1.8.0</pitest-maven.version>
-        <pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
+        <pitest-junit5-plugin.version>1.0.0</pitest-junit5-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
