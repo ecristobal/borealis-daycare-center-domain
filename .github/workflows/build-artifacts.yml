@@ -51,6 +51,7 @@ jobs:
           ./mvnw -B checkstyle:checkstyle
 
       - name: Load SonarCloud package cache
+        if: github.actor != 'dependabot[bot]'
         uses: actions/cache@v1
         with:
           path: ~/.sonar/cache
@@ -58,6 +59,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Perform SonarCloud analysis
+        if: github.actor != 'dependabot[bot]'
         run: |
           ./mvnw -B sonar:sonar -pl !entities \
           -Dsonar.host.url=https://sonarcloud.io \
