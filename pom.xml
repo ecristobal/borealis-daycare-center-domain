@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
+        <version>2.7.1</version>
     </parent>
 
     <groupId>es.borealis.daycare.center</groupId>
@@ -24,7 +24,7 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/ecristobal/borealis-data-domain.git</connection>
+        <connection>scm:git:https://github.com/ecristobal/borealis-daycare-center-domain.git</connection>
     </scm>
 
     <modules>
@@ -36,7 +36,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/ecristobal/borealis-data-domain</url>
+            <url>https://maven.pkg.github.com/ecristobal/borealis-daycare-center-domain</url>
         </repository>
     </distributionManagement>
 
@@ -47,18 +47,19 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <repackage.classifier/>
         <!-- Dependency versions -->
-        <testcontainers.version>1.17.2</testcontainers.version>
-        <jooq-parent.version>3.16.6</jooq-parent.version>
+        <testcontainers.version>1.17.3</testcontainers.version>
+        <jooq-parent.version>3.17.2</jooq-parent.version>
         <moneta.version>1.4.2</moneta.version>
-        <mapstruct.version>1.5.1.Final</mapstruct.version>
+        <mapstruct.version>1.5.2.Final</mapstruct.version>
         <!-- Plugin versions -->
-        <pitest-maven.version>1.8.0</pitest-maven.version>
-        <pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
+        <pitest-maven.version>1.9.2</pitest-maven.version>
+        <pitest-junit5-plugin.version>1.0.0</pitest-junit5-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+        <checkstyle.version>10.3.1</checkstyle.version>
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
-        <dependency-check-maven.version>7.1.0</dependency-check-maven.version>
+        <dependency-check-maven.version>7.1.1</dependency-check-maven.version>
     </properties>
 
     <dependencyManagement>
@@ -115,6 +116,11 @@
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
                             <version>${mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>${project.parent.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -209,7 +215,7 @@
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>10.3</version>
+                        <version>${checkstyle.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
