@@ -35,7 +35,7 @@ jobs:
   clean-repository:
     name: Remove old versions from GitHub Packages
     runs-on: ubuntu-latest
-    needs: deploy-application
+    needs: deploy-artifacts
     steps:
       - name: Delete older versions of Borealis Daycare Center Domain Parent
         uses: actions/delete-package-versions@v3
