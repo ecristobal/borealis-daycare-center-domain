@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-application:
+    name: Build daycare center domain application
     runs-on: ubuntu-latest
     services:
       postgres:
