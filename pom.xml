@@ -47,7 +47,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <repackage.classifier/>
         <!-- Dependency versions -->
-        <testcontainers.version>1.17.2</testcontainers.version>
+        <testcontainers.version>1.17.3</testcontainers.version>
         <jooq-parent.version>3.16.6</jooq-parent.version>
         <moneta.version>1.4.2</moneta.version>
         <mapstruct.version>1.5.1.Final</mapstruct.version>
