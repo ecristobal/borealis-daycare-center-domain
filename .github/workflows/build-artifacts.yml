@@ -61,7 +61,7 @@ jobs:
         run: |
           ./mvnw -B sonar:sonar -pl !entities \
           -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.organization=borealis \
+          -Dsonar.organization=ecristobal \
           -Dsonar.projectKey=${{github.event.repository.name}} \
           -Dsonar.branch=${{github.ref_name}}
         env:
