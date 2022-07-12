@@ -8,13 +8,13 @@
         <version>2.7.0</version>
     </parent>
 
-    <groupId>es.borealis.data</groupId>
+    <groupId>es.borealis.daycare.center</groupId>
     <artifactId>domain-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Borealis Data Domain Parent</name>
-    <description>Parent artifact for all data domains defined into Borealis platform</description>
+    <name>Borealis Daycare Center Domain Parent</name>
+    <description>Parent artifact for Borealis daycare center domain</description>
 
     <developers>
         <developer>

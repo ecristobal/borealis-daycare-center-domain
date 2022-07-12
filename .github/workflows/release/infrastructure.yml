@@ -1,0 +1,76 @@
+name: Database migration
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  setup-infrastructure:
+    name: Set-up ${{ inputs.environment }} infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+
+      - name: Check configuration formatting
+        id: fmt
+        run: terraform fmt -check -chdir=infrastructure
+
+      - name: Initialize configuration
+        id: init
+        run: terraform init -chdir=infrastructure
+
+      - name: Validate configuration
+        id: validate
+        run: terraform validate -no-color -chdir=infrastructure
+
+      - name: Plan infrastructure set-up
+        id: plan
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -input=false -chdir=infrastructure
+        continue-on-error: true
+
+      - name: Add plan results to Pull Request
+        uses: actions/github-script@6
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+      - name: Check plan result
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Apply infrastructure changes in ${{ inputs.environment }}
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false -chdir=infrastructure

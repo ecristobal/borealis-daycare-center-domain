@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
+        <groupId>es.borealis.daycare.center</groupId>
         <artifactId>domain-parent</artifactId>
-        <groupId>es.borealis.data</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>repositories</artifactId>
     <packaging>pom</packaging>
 
-    <name>Borealis Data Domain Repositories</name>
-    <description>Parent project for Borealis data domain repositories</description>
+    <name>Borealis Daycare Center Domain Repositories</name>
+    <description>Repositories to manage Borealis daycare center domain data</description>
 
     <dependencies>
         <!-- PostgreSQL driver -->
