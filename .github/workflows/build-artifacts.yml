@@ -63,7 +63,6 @@ jobs:
         if: github.actor != 'dependabot[bot]'
         run: |
           ./mvnw -B sonar:sonar -pl !entities \
-          -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.organization=ecristobal \
           -Dsonar.projectKey=ecristobal_${{github.event.repository.name}} \
           -Dsonar.branch=${{github.ref_name}}
